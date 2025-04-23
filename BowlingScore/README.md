@@ -20,4 +20,12 @@ This is a simple C++17-based bowling game simulator. It allows interactive gamep
 
 ## Build Instructions (WSL)
 
-1. 
+1. Open a terminal and navigate to your project directory
+2. Build the project using the provided Makefile
+    - make clean
+    - make
+3. To run the main code
+    - make run
+4. Build and run the unit test
+    - make test
+    - make run_test

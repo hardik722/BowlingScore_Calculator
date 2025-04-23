@@ -17,7 +17,7 @@ void BowlingGame::addRoll(int pins)
 int BowlingGame::calculateScore() const
 {
     int score = 0;
-    int idx = 0;
+    size_t idx = 0;
 
     for (int frame = 0; frame < 10; ++frame)
     {
@@ -50,7 +50,7 @@ int BowlingGame::calculateScore() const
 void BowlingGame::printFrameScores() const
 {
     int score = 0;
-    int idx = 0;
+    size_t idx = 0;
 
     for (int frame = 1; frame <= 10; ++frame)
     {
