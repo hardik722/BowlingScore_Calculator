@@ -31,7 +31,7 @@ class BowlingGame : public IBowlingGame
 private:
     // Vector to store the number of pins knocked down in each roll
     std::vector<int> pinsDown;
-
+    mutable int score;
 public:
     // Default constructor
     BowlingGame() = default;
@@ -54,6 +54,13 @@ public:
      * Helpful for interactive display or debugging.
      */
     void printFrameScores() const;
+
+    /**
+     * removing last roll.
+     * @return void
+     */
+    void removeLastRoll();
+
 
     // Destructor
     ~BowlingGame() override = default;

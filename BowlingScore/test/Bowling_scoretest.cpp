@@ -3,7 +3,7 @@
  * @brief Unit tests for the BowlingGame class.
  */
 
-#include "Bowling.h"
+#include "src/Bowling.h"
 #include <gtest/gtest.h>
 
 class BowlingTest : public ::testing::Test
@@ -34,12 +34,14 @@ protected:
 TEST_F(BowlingTest, GutterGame)
 {
     rollMany(20, 0);
+    game.printFrameScores();
     EXPECT_EQ(game.calculateScore(), 0);
 }
 
 TEST_F(BowlingTest, AllOnes)
 {
     rollMany(20, 1);
+    game.printFrameScores();
     EXPECT_EQ(game.calculateScore(), 20);
 }
 
@@ -65,6 +67,7 @@ TEST_F(BowlingTest, OneStrike)
 TEST_F(BowlingTest, PerfectGame)
 {
     rollMany(12, 10); // 12 strikes
+    game.printFrameScores();
     EXPECT_EQ(game.calculateScore(), 300);
 }
 
