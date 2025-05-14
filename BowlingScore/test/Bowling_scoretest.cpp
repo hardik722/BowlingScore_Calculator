@@ -3,7 +3,7 @@
  * @brief Unit tests for the BowlingGame class.
  */
 
-#include "src/Bowling.h"
+#include "../src/Bowling.h"
 #include <gtest/gtest.h>
 
 class BowlingTest : public ::testing::Test
@@ -13,7 +13,7 @@ protected:
 
     void rollMany(int rolls, int pins)
     {
-        for (int i = 0; i < rolls; ++i)
+        for (uint8_t i = 0; i < rolls; ++i)
         {
             game.addRoll(pins);
         }
@@ -31,18 +31,19 @@ protected:
     }
 };
 
+
 TEST_F(BowlingTest, GutterGame)
 {
     rollMany(20, 0);
-    game.printFrameScores();
-    EXPECT_EQ(game.calculateScore(), 0);
+    game.calculateFrameScores();
+    EXPECT_EQ(game.getTotalScore(), 0);
 }
 
 TEST_F(BowlingTest, AllOnes)
 {
     rollMany(20, 1);
-    game.printFrameScores();
-    EXPECT_EQ(game.calculateScore(), 20);
+    game.calculateFrameScores();
+    EXPECT_EQ(game.getTotalScore(), 20);
 }
 
 TEST_F(BowlingTest, OneSpare)
@@ -50,8 +51,8 @@ TEST_F(BowlingTest, OneSpare)
     rollSpare(); // 10 + 3
     game.addRoll(3);
     rollMany(17, 0);
-    game.printFrameScores();
-    EXPECT_EQ(game.calculateScore(), 16);
+    game.calculateFrameScores();
+    EXPECT_EQ(game.getTotalScore(), 16);
 }
 
 TEST_F(BowlingTest, OneStrike)
@@ -60,15 +61,15 @@ TEST_F(BowlingTest, OneStrike)
     game.addRoll(3);
     game.addRoll(4);
     rollMany(16, 0);
-    game.printFrameScores();
-    EXPECT_EQ(game.calculateScore(), 24);
+    game.calculateFrameScores();
+    EXPECT_EQ(game.getTotalScore(), 24);
 }
 
 TEST_F(BowlingTest, PerfectGame)
 {
     rollMany(12, 10); // 12 strikes
-    game.printFrameScores();
-    EXPECT_EQ(game.calculateScore(), 300);
+    game.calculateFrameScores();
+    EXPECT_EQ(game.getTotalScore(), 300);
 }
 
 TEST_F(BowlingTest, TenthFrameSpare)
@@ -77,8 +78,8 @@ TEST_F(BowlingTest, TenthFrameSpare)
     game.addRoll(5);
     game.addRoll(5); // spare in 10th
     game.addRoll(7); // bonus
-    game.printFrameScores();
-    EXPECT_EQ(game.calculateScore(), 17);
+    game.calculateFrameScores();
+    EXPECT_EQ(game.getTotalScore(), 17);
 }
 
 TEST_F(BowlingTest, TenthFrameStrike)
@@ -87,6 +88,6 @@ TEST_F(BowlingTest, TenthFrameStrike)
     game.addRoll(10); // strike
     game.addRoll(5);
     game.addRoll(3);
-    game.printFrameScores();
-    EXPECT_EQ(game.calculateScore(), 18);
+    game.calculateFrameScores();
+    EXPECT_EQ(game.getTotalScore(), 18);
 }
